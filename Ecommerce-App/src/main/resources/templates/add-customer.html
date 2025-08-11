@@ -1,0 +1,29 @@
+<html>
+<body>
+<h1> Welcome to Ecommerce App - Add Customer</h1>
+
+<form th:action="@{/save-customer}" method="post" th:object="${customer}" modelAttribute="${customer}">
+  <div class="imgcontainer">
+    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Username</b></label> 
+    <input type="text" placeholder="Enter Username" name="uname" th:field="*{name}" required>
+	<br/>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw"  th:field="*{password}" required>
+	<br/>
+	<label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" th:field="*{email}" required>
+	<br/>
+	
+    <button type="submit">Add</button>
+   
+  </div>
+
+  
+</form>
+
+</body>
+</html>

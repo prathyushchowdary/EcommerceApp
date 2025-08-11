@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Order List</title>
+    <link rel="stylesheet" href="/css/style.css" /> <!-- optional -->
+</head>
+<body>
+    <h2>Orders</h2>
+
+    <a href="/add-order">Add New Order</a>
+
+    <br/><br/>
+
+    <div th:if="${message}" style="color:green;">
+        <p th:text="${message}"></p>
+    </div>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Order Date</th>
+                <th>Status</th>
+                <th>Total Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="order : ${orderList}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.orderDate}"></td>
+                <td th:text="${order.status}"></td>
+                <td th:text="${order.totalAmount}"></td>
+                <td>
+                    <a th:href="@{'/edit-order/' + ${order.id}}">Edit</a> |
+                    <a th:href="@{'/delete-order/' + ${order.id}}" 
+                       onclick="return confirm('Are you sure you want to delete this order?');">
+                       Delete
+                    </a>
+                </td>
+            </tr>
+            <tr th:if="${orderList.size() == 0}">
+                <td colspan="5">No orders found.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
